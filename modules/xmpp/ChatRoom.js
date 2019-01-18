@@ -1344,12 +1344,12 @@ export default class ChatRoom extends Listenable {
     /**
      * Leaves the room. Closes the jingle session.
      * @returns {Promise} which is resolved if XMPPEvents.MUC_LEFT is received
-     * less than 5s after sending presence unavailable. Otherwise the promise is
-     * rejected.
+     * less than 10s after sending presence unavailable.
+     * Otherwise the promise is rejected.
      */
     leave() {
         return new Promise((resolve, reject) => {
-            const timeout = setTimeout(() => onMucLeft(true), 5000);
+            const timeout = setTimeout(() => onMucLeft(true), 10000);
             const eventEmitter = this.eventEmitter;
 
             /**
