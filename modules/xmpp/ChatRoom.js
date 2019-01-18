@@ -795,10 +795,7 @@ export default class ChatRoom extends Listenable {
                 .length;
         const membersKeys = Object.keys(this.members);
 
-        if (!isSelfPresence) {
-            delete this.members[from];
-            this.onParticipantLeft(from, false);
-        } else if (membersKeys.length > 0) {
+        if (isSelfPresence) {
             // If the status code is 110 this means we're leaving and we would
             // like to remove everyone else from our view, so we trigger the
             // event.
@@ -815,6 +812,9 @@ export default class ChatRoom extends Listenable {
             if (!isKick) {
                 this.eventEmitter.emit(XMPPEvents.MUC_LEFT);
             }
+        } else {
+            delete this.members[from];
+            this.onParticipantLeft(from, false);
         }
 
         if (isKick && this.myroomjid === from) {
