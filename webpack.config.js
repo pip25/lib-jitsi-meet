@@ -61,6 +61,9 @@ const config = {
         filename: `[name]${minimize ? '.min' : ''}.js`,
         path: process.cwd(),
         sourceMapFilename: `[name].${minimize ? 'min' : 'js'}.map`
+    },
+    externals: {
+        'strophe.js': 'window'
     }
 };
 
