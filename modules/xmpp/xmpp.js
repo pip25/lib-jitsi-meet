@@ -525,7 +525,8 @@ export default class XMPP extends Listenable {
                 // Consequently, it may be fine to have the source code and
                 // comment it in or out depending on whether we want to run with
                 // it for some time.
-                this.connection.options.sync = true;
+                // This no longer works in Chrome
+                // this.connection.options.sync = true;
             }
         }
 
