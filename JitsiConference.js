@@ -112,6 +112,9 @@ export default function JitsiConference(options) {
         throw new Error(errmsg);
     }
     this.eventEmitter = new EventEmitter();
+    if (typeof this.eventEmitter.setMaxListeners === 'function') {
+        this.eventEmitter.setMaxListeners(25);
+    }
     this.options = options;
     this.eventManager = new JitsiConferenceEventManager(this);
     this.participants = {};
